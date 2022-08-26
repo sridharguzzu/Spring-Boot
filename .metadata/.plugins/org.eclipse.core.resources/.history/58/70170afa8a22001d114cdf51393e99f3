@@ -1,0 +1,27 @@
+package com.ntuc.datah2;
+
+import org.aspectj.lang.annotation.After;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+@Aspect
+@Component
+public class TxnAspects {
+	
+	@Before("execution(public * withdrawAmt())")
+	public void createlog() {
+		Logger logger = LoggerFactory.getLogger(SpringAoPApplication.class);
+		logger.info("Withdraw Initiated");
+	}
+	
+	@After("execution(public * withdrawAmt())")
+	public void createloga() {
+		Logger logger = LoggerFactory.getLogger(SpringAoPApplication.class);
+		logger.info("Withdraw completed");
+	}
+	
+
+}

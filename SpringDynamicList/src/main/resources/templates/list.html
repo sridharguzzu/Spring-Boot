@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+</head>
+
+<body>
+	<p th:text="${numbers}" />
+
+	<table>
+		<thead>
+			<tr>
+				<th>Number</th>
+			</tr>
+		</thead>
+
+		<tbody>
+			<tr th:each="num: ${numbers}">
+				<td th:text="${num}" />
+			</tr>
+
+		</tbody>
+	</table>
+
+
+</body>
+
+
+
+</html>

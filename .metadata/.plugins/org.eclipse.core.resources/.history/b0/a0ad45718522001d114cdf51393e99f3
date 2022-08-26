@@ -1,0 +1,13 @@
+package com.ntuc.datah2;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class BankTxn {
+	@RequestMapping("/withdraw")
+	public void withdrawAmt() {
+		System.out.println("Money withdrawn");
+	}
+
+}

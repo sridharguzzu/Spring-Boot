@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<form action="/insert" method="get">
+		Employee ID: <input type="text" name="id"> 
+		Employee Name: <input type="text" name="name"> 
+		Employee Salary: <input type="text" name="sal"> 
+		Employee Department: <input type="text"	name="dept">
+		<input type="submit" value="add">
+	</form>
+
+	<div style="width: 30%; margin: auto">
+		<table class="table table-borderless">
+
+			<thead>
+				<tr>
+
+					<th>Select an Option</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><a href="/show"> View Records </a></td>
+				</tr>
+				<tr>
+					<td><a href="/add"> Add Records </a></td>
+				</tr>
+				<tr>
+					<td><a href="/modify"> Update Records </a></td>
+				</tr>
+				<tr>
+					<td><a href="/delete"> Delete Records </a></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>

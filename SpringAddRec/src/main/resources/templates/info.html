@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h1>The form to Add Records</h1>
+
+<form action="/" method="get">
+  <label for="name">First name:</label>
+  <input type="text" name="name"><br><br>
+  <input type="submit" value="Add">
+</form>
+
+<p th:text="${names}" ></p>
+
+</body>
+</html>

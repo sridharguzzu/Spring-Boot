@@ -1,0 +1,5 @@
+package com.ntuc.JPA;
+
+public interface RoleRepository {
+
+}

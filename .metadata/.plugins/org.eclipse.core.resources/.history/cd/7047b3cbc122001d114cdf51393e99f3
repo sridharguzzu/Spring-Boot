@@ -1,0 +1,169 @@
+package com.ntuc.JPA;
+
+import java.util.Optional;
+import java.util.Set;
+
+import javax.annotation.security.RolesAllowed;
+
+import java.util.HashSet;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class JpaController {
+
+	@Autowired
+	private CustomerRepository cr;
+	@Autowired
+	private UserRepository us;
+	@Autowired
+	private RoleRepository rr;
+	
+	//private BCryptPasswordEncoder bCryptPasswordEncoder1;
+	//
+	//
+	@RequestMapping("/showusers")
+	public String showusers(Model m) {
+		List<Users> listUsers = (List<Users>) us.findAll();
+		m.addAttribute("listUsers", listUsers);
+		return "newuser";
+	}
+
+	@RequestMapping("/addUser")
+	public String addUser(Model m, @RequestParam String username,
+			@RequestParam String password, @RequestParam String userrole) {
+		//String encodedPassword = bCryptPasswordEncoder1.encode(password);
+
+		System.out.println(userrole);	
+		UserRole uu = rr.findByName(userrole);	
+		Users user = new Users(username, password, true);
+		
+		user.addRole(uu);
+		System.out.println(uu.getId());
+		System.out.println(uu.getName());
+		us.save(user);
+		return "newuser";
+	}
+	
+	//
+	//
+	// this is endpoint to display records
+	@RequestMapping("/view")
+	public String showCust(Model m, @RequestParam(defaultValue = "0") Integer custid) {
+		m.addAttribute("customer", cr.findAll());
+		m.addAttribute("sortField", custid);
+		return "viewrec";
+	}
+
+//
+	//
+	// this endpoint adds dummy data
+	@RequestMapping("/addtestdata")
+	public String addCust(Model m) {
+		Customers cs = new Customers(100, "albert", "ang mo kio");
+		Customers cs1 = new Customers(101, "ben", "bedok");
+		Customers cs2 = new Customers(102, "charlie", "changi");
+		Customers cs3 = new Customers(103, "dave", "dakota");
+		Customers cs4 = new Customers(104, "elvin", "eng neo");
+		cr.save(cs);
+		cr.save(cs1);
+		cr.save(cs2);
+		cr.save(cs3);
+		cr.save(cs4);
+		return "redirect:/view";
+	}
+
+//
+	//
+	// this endpoint pulls record with current cid
+	@RequestMapping("/getOne")
+	@ResponseBody
+	public Optional<Customers> showOne(Integer cid) {
+		return cr.findById(cid);
+	}
+
+//
+//	this method processes requests to add records from button icon	
+	@RequestMapping("/add")
+	public String addNew(Model m, @RequestParam(defaultValue = "0") Integer custid, @RequestParam String custname,
+			@RequestParam String location) {
+		if (cr.existsById(custid)) {
+			System.out.println("customer ID already EXISTS!!");
+			return "redirect:/view";
+		}
+		Customers cs = new Customers(custid, custname, location);
+		cr.save(cs);
+		return "redirect:/view";
+	}
+
+	//
+//	this method processes requests to add records from button icon	
+	@RequestMapping("/edit")
+	public String editRec(Model m, @RequestParam(defaultValue = "0") Integer custid, @RequestParam String custname,
+			@RequestParam String location) {
+		Customers cs = new Customers(custid, custname, location);
+		cr.save(cs);
+		return "redirect:/view";
+	}
+
+	//
+	//
+	// this endpoint from menu for adding new records
+	@RequestMapping("/showadd")
+	public String showadd() {
+		return "adddelete";
+	}
+
+//
+	//
+	// this endpoint from menu for deleting records
+	@RequestMapping("/showdelete")
+	public String showdelete() {
+		return "adddelete";
+	}
+
+//
+//
+//	this method processes requests to add or delete records	
+	@RequestMapping("/adddelete")
+	public String addCust(Model m, @RequestParam(defaultValue = "0") Integer custid, @RequestParam String custname,
+			@RequestParam String location, @RequestParam String type) {
+		if (type.equals("Add")) {
+			if (cr.existsById(custid)) {
+				System.out.println("customer ID already EXISTS!!");
+				return "redirect:/view";
+			}
+			Customers cs = new Customers(custid, custname, location);
+			cr.save(cs);
+		} else if (type.equals("Delete")) {
+			if (cr.existsById(custid)) {
+				cr.deleteById(custid);
+			} else {
+				System.out.println("customer ID DOES NOT EXIST!!");
+			}
+		}
+		return "redirect:/view";
+	}
+
+//
+	//
+	// this method will delete record when thrash icon clicked
+	@RequestMapping(value = "/delete/{id}")
+	public String delCust(@PathVariable("id") int cid) {
+		cr.deleteById(cid);
+		return "redirect:/view";
+	}
+	//
+	//
+	//
+
+	
+
+}

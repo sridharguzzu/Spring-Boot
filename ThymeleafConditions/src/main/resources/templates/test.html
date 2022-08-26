@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+	<h1>Thymeleaf Conditions</h1>
+
+	<!-- Using the th:if -->
+
+	<!-- Your age is <span th:text="${age}" ></span> -->
+	<span th:if="${age} >= 18"> you can vote</span>
+	<span th:if="${age} < 18"> you cannot vote</span>
+	
+	<!-- Using the th:switch -->
+	<div th:switch="${age} >= 18">
+		<p th:case="${true}"> You can Marry </p>
+		<p th:case="${false}"> You cannot Marry </p>
+	</div>
+	
+	<!-- Using the elvis -->
+	<p th:text="${age > 18} ? 'You Can Work' : 'You cannot Work'"> </p>
+	
+</body>
+</html>

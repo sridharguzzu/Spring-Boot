@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.ntuc.JPA.UserRole&apos; to &apos;Role&apos;&#x0D;&#x0A;- Original project: &apos;SpringDataJpaSecurity&apos;&#x0D;&#x0A;- Original element: &apos;com.ntuc.JPA.UserRole&apos;&#x0D;&#x0A;- Renamed element: &apos;com.ntuc.JPA.Role&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;UserRole&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.ntuc.JPA{UserRole.java[UserRole" matchStrategy="1" name="Role" qualified="false" references="true" similarDeclarations="false" stamp="1661245248746" textual="false" version="1.0"/>
+</session>
