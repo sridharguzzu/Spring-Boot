@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h2 th:text="${nameslist}"></h2>
+
+	<table>
+			<tr>
+				<th>Names</th>
+			</tr>
+
+			<tr th:each="n: ${nameslist}">
+				<td th:text="${n}"></td>
+				<td> <a th:href="@{/delete/{name}(name=${n})}"> Delete</a> </td>
+			</tr>
+	</table>
+
+</body>
+</html>
