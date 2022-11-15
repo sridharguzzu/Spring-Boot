@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>HTTP Methods</title>
+<style>
+p {
+	margin: 2px;
+}
+</style>
+</head>
+<body>
+	<div style="width: 30%; margin: auto; text-align: center">
+		<h2>Simple forms to demo the HTTP Methods</h2>
+
+		<div style="border: 1px solid; padding: 5px; margin: 2px">
+			<p>Demo the get method</p>
+			<form th:action="@{/get}" th:method="get">
+				Name: <input type="text" name="name" placeholder="Not required" /> <input
+					type="submit" name="submit" value="Get">
+			</form>
+		</div>
+		<div style="border: 1px solid; padding: 5px; margin: 2px">
+			<p>Demo the Post method</p>
+			<form th:action="@{/post}" th:method="post">
+				Name:<input type="text" name="name" placeholder="Not required" /> <input
+					type="submit" name="submit" value="Post">
+			</form>
+		</div>
+
+		<!--  the 2 methods below are disabled by default and use application properties to enable -->
+		<!--  spring.mvc.hiddenmethod.filter.enabled=true -->
+
+		<div style="border: 1px solid; padding: 5px; margin: 2px">
+			<p>Demo the Put method</p>
+			<form th:action="@{/put}" th:method="put">
+				Name:<input type="text" name="name" placeholder="Not required" /> <input
+					type="submit" name="submit" value="PUT">
+			</form>
+		</div>
+		<div style="border: 1px solid; padding: 5px; margin: 2px">
+			<p>Demo the Delete method</p>
+			<form th:action="@{/delete}" th:method="delete">
+				Name:<input type="text" name="name" placeholder="Not required" /> <input
+					type="submit" name="submit" value="DELETE">
+			</form>
+		</div>
+
+
+		<p th:if="${msg}=='get'">Get Method Accessed</p>
+		<p th:if="${msg}=='post'">Post Method Accessed</p>
+		<p th:if="${msg}=='put'">Put Method Accessed</p>
+		<p th:if="${msg}=='delete'">Delete Method Accessed</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>HTTP Methods</title>
+</head>
+<body>
+	<div style="width: 50%; margin: auto">
+		<h2>Simple forms to demo the HTTP Methods</h2>
+
+		<div style="border:1px solid; padding:5px">
+			<p>Demo the get method</p>
+			<form th:action="@{/get}" th:method="get">
+				Name: <input type="text" name="name" /> <input type="submit"
+					name="submit" value="Get">
+			</form>
+		</div>
+		<div style="border:1px solid; padding:5px">
+			<p>Demo the Post method</p>
+			<form th:action="@{/post}" th:method="post">
+				Name:<input type="text" name="name" /> <input type="submit"
+					name="submit" value="Post">
+			</form>
+		</div>
+		
+		<!--  the 2 methods below are disabled by default and use application properties to enable -->
+		<!--  spring.mvc.hiddenmethod.filter.enabled=true -->
+		
+		<div style="border:1px solid; padding:5px">
+			<p>Demo the Put method</p>
+			<form th:action="@{/put}" th:method="put">
+				Name:<input type="text" name="name" /> <input type="submit"
+					name="submit" value="PUT">
+			</form>
+		</div>
+		<div style="border:1px solid; padding:5px">
+			<p>Demo the Delete method</p>
+			<form th:action="@{/delete}" th:method="delete">
+				Name:<input type="text" name="name" /> <input type="submit"
+					name="submit" value="DELETE">
+			</form>
+		</div>
+	</div>
+</body>
+</html>
